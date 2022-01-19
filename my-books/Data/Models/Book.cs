@@ -23,5 +23,7 @@ namespace my_books.Data.Models
 
         //Relationship
         public int PublisherId { get; set; }
+
+        public List<Author> Authors { get; set; }
     }
 }
