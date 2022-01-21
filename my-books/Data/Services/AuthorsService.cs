@@ -21,24 +21,24 @@ namespace my_books.Data.Services
             {
                 FullName = author.FullName
             };
-            _context.Author.Add(_author);
+            _context.Authors.Add(_author);
             _context.SaveChanges();
         }
 
         public List<Author> GetAllAuthors() 
         {
-            return _context.Author.ToList();
+            return _context.Authors.ToList();
         }
 
         public Author GetAuthorById(int id)
         {
-            var result = _context.Author.FirstOrDefault(a => a.Id == id);
+            var result = _context.Authors.FirstOrDefault(a => a.Id == id);
             return result;
         }
 
         public Author UpdateAuthorById(int id, AuthorVM author)
         {
-            var result = _context.Author.FirstOrDefault(a => a.Id == id);
+            var result = _context.Authors.FirstOrDefault(a => a.Id == id);
             if (result != null)
             {
                 result.FullName = author.FullName;
@@ -49,10 +49,10 @@ namespace my_books.Data.Services
 
         public void DeleteAuthorById(int id)
         {
-            var result = _context.Author.FirstOrDefault(a => a.Id == id);
+            var result = _context.Authors.FirstOrDefault(a => a.Id == id);
             if (result != null)
             {
-                _context.Author.Remove(result);
+                _context.Authors.Remove(result);
                 _context.SaveChanges();
             }
         }

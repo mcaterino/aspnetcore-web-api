@@ -16,30 +16,58 @@ namespace my_books.Data
             {
                 var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
 
-                if (!context.Books.Any())
+                if (!context.Publishers.Any())
                 {
-                    context.Books.AddRange(
-                        new Book
+                    context.Publishers.AddRange(
+                        new Publisher
                         {
-                            Title = "1st Book Title",
-                            Description = "1st Book Description",
-                            IsRead = true,
-                            DateRead = DateTime.Now.AddDays(-10),
-                            Rate = 4,
-                            Genre = "Biography",
-                            Author = "First Author",
-                            CoverUrl = "https://..first book..",
-                            DateAdded = DateTime.Now
+                            Name = "Addison-Wesley"
                         },
-                        new Book
+                        new Publisher
                         {
-                            Title = "2nd Book Title",
-                            Description = "2nd Book Description",
-                            IsRead = false,
-                            Genre = "Fiction",
-                            Author = "Second Author",
-                            CoverUrl = "https://..second book",
-                            DateAdded = DateTime.Now
+                            Name = "Microsoft Press"
+                        },
+                        new Publisher
+                        {
+                            Name = "O'Reilly"
+                        },
+                        new Publisher
+                        {
+                            Name = "William Pollock"
+                        }
+                    );
+                    context.SaveChanges();
+                }
+                if (!context.Authors.Any())
+                {
+                    context.Authors.AddRange(
+                        new Author
+                        {
+                            FullName = "Jhon Sharp"
+                        },
+                        new Author
+                        {
+                            FullName = "Marinj Heverbeke"
+                        },
+                        new Author
+                        {
+                            FullName = "Len Bass"
+                        },
+                        new Author
+                        {
+                            FullName = "Paul Clements"
+                        },
+                        new Author
+                        {
+                           FullName = "Rick Kazman"
+                        },
+                        new Author
+                        {
+                            FullName = "Eva Tuczai"
+                        },
+                        new Author
+                        {
+                            FullName = "Asena Hertz"
                         }
                     );
                     context.SaveChanges();

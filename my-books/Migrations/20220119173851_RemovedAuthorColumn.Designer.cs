@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using my_books.Data;
 
 namespace my_books.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220119173851_RemovedAuthorColumn")]
+    partial class RemovedAuthorColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,13 +116,13 @@ namespace my_books.Migrations
 
             modelBuilder.Entity("my_books.Data.Models.AuthorBook", b =>
                 {
-                    b.HasOne("my_books.Data.Models.Author", "Author")
+                    b.HasOne("my_books.Data.Models.Book", "Book")
                         .WithMany("AuthorBooks")
                         .HasForeignKey("AuthorsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("my_books.Data.Models.Book", "Book")
+                    b.HasOne("my_books.Data.Models.Author", "Author")
                         .WithMany("AuthorBooks")
                         .HasForeignKey("BooksId")
                         .OnDelete(DeleteBehavior.Cascade)

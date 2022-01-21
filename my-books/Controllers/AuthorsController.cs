@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace my_books.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class AuthorsController : Controller
     {
         private readonly AuthorsService _service;
@@ -28,8 +30,8 @@ namespace my_books.Controllers
         [HttpGet("get-all-authors")]
         public IActionResult GetAllAuthors()
         {
-            _service.GetAllAuthors();
-            return Ok();
+            var allAuthors = _service.GetAllAuthors();
+            return Ok(allAuthors);
         }
 
         //Third endpoint / GetAuthorById/1

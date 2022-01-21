@@ -21,24 +21,24 @@ namespace my_books.Data.Services
             {
                 Name = publisher.FullName
             };
-            _context.Publisher.Add(_publisher);
+            _context.Publishers.Add(_publisher);
             _context.SaveChanges();
         }
 
         public List<Publisher> GetAllPublisher()
         {
-            return _context.Publisher.ToList();
+            return _context.Publishers.ToList();
         }
 
         public Publisher GetPublisherById(int id)
         {
-            var result = _context.Publisher.FirstOrDefault(p => p.Id == id);
+            var result = _context.Publishers.FirstOrDefault(p => p.Id == id);
             return result;
         }
 
         public Publisher UpdatePublisherById(int id, PublisherVM publisher)
         {
-            var result = _context.Publisher.FirstOrDefault(p => p.Id == id);
+            var result = _context.Publishers.FirstOrDefault(p => p.Id == id);
             if (result != null)
             {
                 result.Name = publisher.FullName;
@@ -49,10 +49,10 @@ namespace my_books.Data.Services
 
         public void DeletePublisherById(int id)
         {
-            var result = _context.Publisher.FirstOrDefault(p => p.Id == id);
+            var result = _context.Publishers.FirstOrDefault(p => p.Id == id);
             if (result != null)
             {
-                _context.Publisher.Remove(result);
+                _context.Publishers.Remove(result);
                 _context.SaveChanges(); 
             }
         }
