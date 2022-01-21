@@ -34,12 +34,20 @@ namespace my_books.Controllers
             return Ok(allAuthors);
         }
 
-        //Third endpoint / GetAuthorById/1
+        //Third endpoint option 1/ GetAuthorById/1
         [HttpGet("get-author-by-id/{id}")]
         public IActionResult GetAuthorById(int id)
         {
             var author =  _service.GetAuthorById(id);
             return Ok(author);
+        }
+
+        //Third endpoint option 2/ GetAuthorById/1
+        [HttpGet("get-author-with-books-by-id/{id}")]
+        public IActionResult GetAuthorWithBooksById(int id)
+        {
+            var authorWithBooks = _service.GetAuthorWithBooks(id);
+            return Ok(authorWithBooks);
         }
 
         //Fourth endpoint / UpdateAuthorById/1
