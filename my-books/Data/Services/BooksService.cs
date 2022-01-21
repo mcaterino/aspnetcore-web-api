@@ -52,10 +52,28 @@ namespace my_books.Data.Services
 
         }
         
-        public Book GetBookById(int id)
+        public BookWithAuthorsVM GetBookById(int id)
         {
-            var result = _context.Books.FirstOrDefault(b => b.Id == id);
-            return result;
+            // Option when retriving just a book
+            //var result = _context.Books.FirstOrDefault(b => b.Id == id);
+            //return result;
+
+            //Option retrieving book with authors
+
+            var _bookWithAuthors = _context.Books.Where(n => n.Id == id).Select(book => new BookWithAuthorsVM()
+            {
+                Title = book.Title,
+                Description = book.Description,
+                IsRead = book.IsRead,
+                DateRead = book.IsRead ? book.DateRead.Value : null,
+                Rate = book.IsRead ? book.Rate.Value : null,
+                Genre = book.Genre,
+                CoverUrl = book.CoverUrl,
+                PublisherName = book.Publisher.Name,
+                AuthorNames = book.AuthorBooks.Select(n => n.Author.FullName).ToList()
+            }).FirstOrDefault();
+
+            return _bookWithAuthors;
         }
 
         public Book UpdateBookById(int id, BookVM book)
